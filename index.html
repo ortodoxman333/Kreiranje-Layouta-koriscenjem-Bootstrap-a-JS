@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/all.css" rel="stylesheet"> <!--load all styles -->
+    <title>Assignment 2 - Website Building</title>
+    <style>
+             .{
+        box-sizing: border-box; 
+      }
+            body {
+                box-sizing: border-box;
+                font-family: sans-serif;
+                background-color: bisque;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                min-height: 100vh;
+                margin: 0%;
+            }
+            .header {
+                padding: 20px 90px;
+            }
+            #login-container {
+                width: 460px;
+                margin: 0 auto;
+            }
+.form button {
+    background-color:cadetblue;
+    border: 2px solid black;
+    border-radius: 4px;
+    color: white;
+    display: block;
+    font-family: inherit;
+    font-size: 16px;
+    padding: 10px;
+    width: 100%;
+}
+form-control input {
+    border: 2px solid #f0f0f0;
+    border-radius: 4px;
+    display: block;
+    font-family: inherit;
+    font-size: 14px;
+    padding: 10 px;
+    width: 100%;
+}
+
+            form label,
+            form input {
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            form input {
+                padding: 8px;
+            }
+
+            form label {
+                font-weight: bold;
+            }
+
+            form div {
+                margin: 16px 0px;
+            }
+
+           form i {
+            position: relative;
+            bottom: 25px;
+            left: 415px;
+            visibility: hidden;
+            
+            }
+
+            i.fa-check{
+                left: 430px;
+            }
+            form small {
+            visibility: hidden;
+            position: relative;
+            top: 0;
+            right: 34px;
+            color: #c00000;
+
+            }
+
+            .form.error small {
+            visibility: visible;
+
+            }
+
+            .form.success input {
+                border-color: #04a53a;
+            }
+
+            .form.error input {
+                border-color: #c00000;
+            }
+
+            .form.success i.fa-check {
+                visibility: visible;
+                color: #04a53a;
+            }
+
+            .form.error i.fa-times {
+                visibility: visible;
+                color: #c00000;;
+            }
+
+    </style>
+</head>
+
+    <body>
+<div class="container">
+    <div class="header">
+        <h1>Assignment 2</h1>
+        <h2>Create Account</h2>
+    </div>
+    <form id="form">
+        <div class="form">
+            <label for="username">Username:</label>
+            <input id="username" type="text">
+            <i class="fas fa-check"></i>
+            <i class="fas fa-times"></i>
+            <small>Error message</small>
+        </div>
+
+        <div class="form">
+            <label for="password">Password:</label>
+            <input id="password" type="password">
+            <i class="fas fa-check"></i>
+            <i class="fas fa-times"></i>
+            <small>Error message</small>
+        </div>
+
+        <input type="submit" value="Login">
+
+    
+    </form>
+</div>
+<script>
+    const form = document.getElementById("form");
+    const username = document.getElementById("username");
+    const password = document.getElementById("password");
+
+    var SuccessfulLogin = document.createElement("p");
+            form.appendChild(SuccessfulLogin); 
+            
+
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+
+                checkInputs();
+            });
+
+            function checkInputs() {
+                const usernameValue = username.value.trim();
+                const passwordValue = password.value.trim();
+
+                if (usernameValue === '') {
+                    setErrorFor(username, 'please, enter username');
+                    
+
+                } else if (usernameValue != "new_user") {
+                setErrorFor(username, 'please, enter valid username');
+               
+                } else if (usernameValue === "new_user"){
+                    setSuccessFor(username)
+                   
+
+                }
+                if (passwordValue === '') {
+                    setErrorFor(password, 'please, enter password');
+                  
+
+                } else if (passwordValue != "123456789") {
+                    setErrorFor(password, 'please, enter valid password');
+                    
+
+                } else if (passwordValue === "123456789") {
+                    setSuccessFor(password);
+                   
+                }
+
+                if (usernameValue === "new_user" && passwordValue === "123456789") {
+                    SuccessfulLogin.innerHTML = "Successful login!";
+    } 
+
+            }
+
+            function setErrorFor(input, message) {
+                const form = input.parentElement;
+                const small = form.querySelector('small');
+
+                small.innerText = message;
+
+                form.className = 'form error';
+
+                   }
+
+                function setSuccessFor(input) {
+                const form = input.parentElement;
+    
+
+
+                form.className = 'form success';
+                   }
+     
+</script>
+    </body>
+    </html>
